@@ -17,6 +17,10 @@
   <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 :root {
   --bg-color: #0d1117;
   --text-color: #c9d1d9;
@@ -24,7 +28,7 @@
   --card-bg: #161b22;
   --border-color: #30363d;
   --hover-text-color: #fff;
-  --card-bg-rgb: 22, 27, 34; /* Для использования в rgba() */
+  --card-bg-rgb: 22, 27, 34;
 }
 
 body.light {
@@ -34,7 +38,7 @@ body.light {
   --card-bg: #fff;
   --border-color: #ddd;
   --hover-text-color: #fff;
-  --card-bg-rgb: 255, 255, 255; /* Для использования в rgba() */
+  --card-bg-rgb: 255, 255, 255;
 }
 
 body {
@@ -44,18 +48,18 @@ body {
   color: var(--text-color);
   display: flex;
   flex-direction: column;
-  align-items: center; /* Центрирует header и footer */
-  padding: 2em; /* Общий отступ по краям страницы */
+  align-items: center;
+  padding: 2em;
   transition: background 0.3s, color 0.3s;
-  box-sizing: border-box;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 header {
   text-align: center;
   margin-bottom: 2em;
-  width: 100%; /* Убедитесь, что header занимает всю ширину */
-  max-width: 800px; /* Соответствует max-width main-content-wrapper */
+  width: 100%;
+  max-width: 800px;
 }
 
 .profile-pic {
@@ -72,6 +76,10 @@ h1 {
   font-size: 2.5rem;
   color: var(--accent-color);
   margin-bottom: 0.5em;
+}
+
+h2 {
+  margin: 0.3em 0;
 }
 
 p {
@@ -98,16 +106,13 @@ p {
   color: var(--hover-text-color);
 }
 
-/* НОВЫЙ КОНТЕЙНЕР ДЛЯ ОСНОВНОГО КОНТЕНТА */
 .main-content-wrapper {
-  max-width: 800px; /* Установленная ширина блоков */
+  max-width: 800px;
   width: 100%;
   margin: 0 auto;
   padding: 0 1em;
-  box-sizing: border-box;
 }
 
-/* Общие стили для секций внутри обертки */
 .about, .skills {
   width: 100%;
   background: var(--card-bg);
@@ -117,10 +122,8 @@ p {
   margin-bottom: 2em;
   text-align: left;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
 }
 
-/* Центрирование заголовка и текста в секции "Обо мне" */
 .about h2, .about p {
   text-align: center;
 }
@@ -171,7 +174,6 @@ p {
   text-decoration: none;
   border: 1px solid var(--border-color);
   border-radius: 6px;
-  text-align: center;
   transition: transform 0.3s, background 0.3s, border-color 0.3s, color 0.3s;
   font-weight: bold;
 }
@@ -202,14 +204,12 @@ p {
 
 .slides {
   display: flex;
-  border-radius: 8px;
   width: 100%;
   transition: transform 0.5s ease-in-out;
 }
 
 .slides div {
   min-width: 100%;
-  flex-shrink: 0;
   background: var(--card-bg);
   padding: 2em;
   box-sizing: border-box;
@@ -219,10 +219,8 @@ p {
   justify-content: center;
   align-items: center;
   position: relative;
-  min-height: 350px;
 }
 
-/* Стили для контента внутри слайда */
 .slides div h3,
 .slides div p,
 .slides div .project-link {
@@ -300,25 +298,16 @@ p {
   color: var(--hover-text-color);
 }
 
-/* Стили для секции контактов с QR-кодами */
 .contact-section {
-  max-width: 100%;
   background: var(--card-bg);
   padding: 1.5em;
   border-radius: 8px;
   border: 1px solid var(--border-color);
-  margin-bottom: 2em;
-  margin-top: 4em;
+  margin: 4em 0 2em;
   text-align: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   width: 100%;
   box-sizing: border-box;
-}
-
-.contact-section h2 {
-  color: var(--accent-color);
-  margin-top: 0;
-  margin-bottom: 1em;
 }
 
 .contact-intro-text {
@@ -335,7 +324,7 @@ p {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 2em; /* Промежуток между элементами QR */
+  gap: 2em;
   margin-bottom: 2em;
 }
 
@@ -344,7 +333,7 @@ p {
   flex-direction: column;
   align-items: center;
   background: var(--bg-color);
-  padding: 1em; /* Уменьшенный padding для более компактного вида */
+  padding: 1em;
   border-radius: 8px;
   border: 1px solid var(--border-color);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
@@ -357,17 +346,12 @@ p {
 }
 
 .qr-code-img {
-  width: 120px; /* Фиксированный размер для сохранения пропорций 1:1 */
-  height: 120px; /* Фиксированный размер для сохранения пропорций 1:1 */
-  object-fit: contain; /* Убедимся, что изображение полностью помещается, сохраняя пропорции */
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
   border: 1px solid var(--border-color);
   border-radius: 4px;
   margin-bottom: 0.8em;
-  /* Важно: если изображение само по себе имеет другие пропорции,
-     а вы хотите чтобы оно было строго квадратным и без обрезки,
-     то object-fit: contain; - лучший выбор.
-     Если изображение QR-кода уже квадратное, то object-fit: cover;
-     или его отсутствие также сработают, так как width/height одинаковы. */
 }
 
 .qr-item p {
@@ -395,9 +379,8 @@ p {
   background: #4a90e2;
 }
 
-/* Стиль для текста "Или напишите напрямую" */
 .direct-contact-text {
-  text-align: center; /* Центрирование этого текста */
+  text-align: center;
   margin-top: 2em;
   font-size: 0.95em;
   color: var(--text-color);
@@ -421,10 +404,10 @@ footer {
   color: #888;
   text-align: center;
   width: 100%;
-  max-width: 800px; /* Соответствует max-width main-content-wrapper */
+  max-width: 800px;
 }
 
-/* Media Queries for smaller screens */
+/* Мобильная адаптация */
 @media (max-width: 768px) {
   body {
     padding: 1em;
@@ -452,10 +435,6 @@ footer {
     margin-bottom: 1.5em;
   }
 
-  .contact-section {
-    margin-top: 2.5em;
-  }
-
   .links, .skills-grid {
     grid-template-columns: 1fr;
   }
@@ -473,13 +452,21 @@ footer {
     flex-direction: column;
     gap: 1.5em;
   }
+
   .qr-code-img {
-    width: 100px; /* Еще меньше на очень маленьких экранах */
-    height: 100px; /* Сохранение пропорций */
+    width: 100px;
+    height: 100px;
   }
 }
 
 @media (max-width: 480px) {
+  body {
+    font-size: 14px;
+    padding: 1em 0.5em;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
   h1 {
     font-size: 1.8rem;
   }
@@ -488,12 +475,25 @@ footer {
     font-size: 0.9em;
   }
 
-  .theme-toggle, .slider-buttons button, .links a, .project-link, .qr-link {
+  .theme-toggle,
+  .slider-buttons button,
+  .links a,
+  .project-link,
+  .qr-link {
     padding: 0.6em 1.2em;
     font-size: 0.9em;
   }
+
+  .slides div {
+    padding: 1em 0.5em;
+  }
+
+  .contact-intro-text, .about p {
+    max-width: 350px;
+    margin: 0 auto;
+  }
 }
-  </style>
+</style>
 </head>
 <body>
   <header>
